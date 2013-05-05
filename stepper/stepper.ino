@@ -1,3 +1,4 @@
+/*
 int dirpin = 8;
 int steppin = 9;
 
@@ -35,4 +36,21 @@ void loop()
     digitalWrite(steppin, HIGH); // "Rising Edge" so the easydriver knows to when to step.
     delayMicroseconds(2500);      // This delay time is close to top speed for this
   }   
+}
+*/
+
+#include <Stepper.h>
+#define STEPS 48
+
+Stepper stepper1(STEPS, 8, 9, 10, 11);
+
+void setup(){
+  stepper1.setSpeed(60);
+}
+
+void loop(){
+  stepper1.step(-500);
+  delay(500);
+  stepper1.step(500);
+  delay(500);
 }
