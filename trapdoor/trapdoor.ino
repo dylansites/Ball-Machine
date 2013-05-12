@@ -2,6 +2,7 @@
 
 const int servoPin = 5;
 //const int switchPin = 7;
+const int potPin = A0;
 const int servoPause = 100;
 
 Servo toyServo;
@@ -24,14 +25,19 @@ void loop(){
   toyServo.write(90);
   delay(servoPause); 
   }*/
-  delay(500);
-  Serial.println("I am at 0");
-  toyServo.write(0);
-  delay(500);
-  Serial.println("I am at 90");
-  toyServo.write(90);
-  delay(500);
-  Serial.println("I am at 180");
-  toyServo.write(180);
-  delay(500);
+  
+  int potVal = analogRead(potPin);
+  int servoAngle = map(potVal, 0, 1023, 60, 120);
+  toyServo.write(servoAngle);
+  delay(45);
+  
+  /*
+  delay(5000);
+  Serial.println("I am at 110");
+  toyServo.write(110);
+  delay(5000);
+  Serial.println("I am at 60");
+  toyServo.write(60);
+  delay(5000);
+  */
 }
